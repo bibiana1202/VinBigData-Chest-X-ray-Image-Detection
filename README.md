@@ -1,45 +1,43 @@
 # VinBigData-Chest-X-ray-Image-Detection
-VinBigData Chest X-ray Image Detection
-
-  <a href="https://www.notion.so/wew1202/VinBigData-Chest-X-ray-Detection-5c03f0811f5a47adb314f918795a2056">![Notion](https://img.shields.io/badge/Notion-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white)
-
-  
-  
-  Kaggle - VinBigData chest X-ray abnormalities detection contest
+* VinBigData Chest X-ray Image Detection
+* <a href="https://www.notion.so/wew1202/VinBigData-Chest-X-ray-Detection-5c03f0811f5a47adb314f918795a2056">![Notion](https://img.shields.io/badge/Notion-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white)
+---
+* Kaggle - VinBigData chest X-ray abnormalities detection contest
 url: https://www.kaggle.com/competitions/vinbigdata-chest-xray-abnormalities-detection/overview
+---
+## 🫁Introduction
+* ### Why Chest X-ray?
 
-🫁Introduction
-Why Chest X-ray?
+  - Chest X-ray는 기본중에 기본인 검사.
+  - 생명과 직결되는 부위이기 때문에 정확한 진단이 필요하다.
+  - 다른 부위의 X-ray와는 다르게 놓칠 가능성이 있는 부위라 많고 많은 X-ray data중 chest X-ray를 선택하였다.
+* ### Why Chest X-ray needs AI?
 
-Chest X-ray는 기본중에 기본인 검사.
-생명과 직결되는 부위이기 때문에 정확한 진단이 필요하다.
-다른 부위의 X-ray와는 다르게 놓칠 가능성이 있는 부위라 많고 많은 X-ray data중 chest X-ray를 선택하였다.
-Why Chest X-ray needs AI?
-
-예를 들어 종양 판독의 경우 종양이 크다면 누구나 판독이 가능하다. 하지만 만약 결절의 size가 작다면 놓칠 수 있는 가능성이 있다.
-이렇게 병변을 놓치지 않기위해 AI가 의사의 도움이 되어 진단에 도움이 될 수 있다.
+  - 예를 들어 종양 판독의 경우 종양이 크다면 누구나 판독이 가능하다. 하지만 만약 결절의 size가 작다면 놓칠 수 있는 가능성이 있다. 이렇게 병변을 놓치지 않기위해 AI가 의사의 도움이 되어 진단에 도움이 될 수 있다.
 또한 일반 X-ray 전문의사(방사선과)가 아니더라도 판독에 도움을 받을 수 있기때문에 AI를 이용한다면 좀 더 정확하게 판독이 가능할 것이다.
-purpose
-폐와 관련된 14가지의 질병을 detecting하여 data augmentation에 따른 여러 model의 performance 비교
 
-🫁Materials & Methods
-Materials
-
-- Vietnam hospitals dataset (the Hospital 108 and the Hanoi Medical University Hospital)
-- train images: 15,000 (normal: 10,606, patient: 4,394)
-- test images: 3,000
-- bbox info: image_id, class_id, x_min, y_min, x_max, y_max
-- image resize: 512 x 512 , 1024 x 1024
-- 병명 사전조사 : <a href="https://www.notion.so/wew1202/8204385788fd45c1adeb7c0c7dc5e4db">![Notion](https://img.shields.io/badge/Notion-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white)
+* ### purpose
+  - 폐와 관련된 14가지의 질병을 detecting하여 data augmentation에 따른 여러 model의 performance 비교
+---
+## 🫁Materials & Methods
+* ### Materials
+  - Vietnam hospitals dataset (the Hospital 108 and the Hanoi Medical University Hospital)
+  - train images: 15,000 (normal: 10,606, patient: 4,394)
+  - test images: 3,000
+  - bbox info: image_id, class_id, x_min, y_min, x_max, y_max
+  - image resize: 512 x 512 , 1024 x 1024
+  - 병명 사전조사 : <a href="https://www.notion.so/wew1202/8204385788fd45c1adeb7c0c7dc5e4db">![Notion](https://img.shields.io/badge/Notion-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white)
   
-Methods
-
-Tools: OpenCV, PyTorch, numpy, pandas, sklearn, seaborn, matplotlib
-Augmentations: Rotation(90º), Flip(horizontal), Zoomin(10%), Cutmix, CLAHE, Equlization, Mosaic
-Models: EfficientDet(소정), Faster R-CNN(봉학,현나), YOLOX(수현)
-Workflow
-
-🫁Results
+* ### Methods
+  - Tools: OpenCV, PyTorch, numpy, pandas, sklearn, seaborn, matplotlib
+  - Augmentations: Rotation(90º), Flip(horizontal), Zoomin(10%), Cutmix, CLAHE, Equlization, Mosaic
+  - Models: 
+  - Workflow
+  
+  
+  
+---
+## 🫁Results
 EDA
 
 정상인의 데이터를 삭제하고 적은 양의 환자 데이터만 남음
@@ -71,8 +69,8 @@ Faster R-CNN	0.012	0.098	0.013	--
 YOLOX	0.021	0.068	0.147	0.070
 * 예측 이미지
 
-
-🫁Discussion
+---
+## 🫁Discussion
 Bio의 trend인 object detection 을 공부하기 위하여 선택한 프로젝트
 
 학습 data안에서 train & valid로 나누지 않고 Group K-Fold를 사용했던 이유?
@@ -117,9 +115,11 @@ Data imbalance 문제를 해결하기 위해 너무 많은 양을 갖고있는 �
 (이는 data의 양이 6배나 차이가 나기때문에 나온 결과)
 C그룹에서 훨씬 성능이 좋았던것을 통해 data imbalance를 해결한것보다는 data의 양이 충분히 있는것이 성능향상에 더 많은 효과가 있음을 유추할 수 있었고
 imbalance와 data의 양을 동시에 해결한다면 이보다 훨씬 더 좋은 성능을 낼 수 있지 않을까 싶다.
-Ref
+
+---
+## Ref
 https://www.kaggle.com/code/dschettler8845/visual-in-depth-eda-vinbigdata-competition-data
 https://www.kaggle.com/code/yerramvarun/pytorch-fasterrcnn-with-group-kfold-14-class
 https://www.kaggle.com/code/pestipeti/vinbigdata-fasterrcnn-pytorch-inference/notebook
 https://www.kaggle.com/code/pestipeti/vinbigdata-fasterrcnn-pytorch-train/notebook
-MEMO
+
