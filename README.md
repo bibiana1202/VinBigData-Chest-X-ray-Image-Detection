@@ -30,8 +30,7 @@ Materials
 - test images: 3,000
 - bbox info: image_id, class_id, x_min, y_min, x_max, y_max
 - image resize: 512 x 512 , 1024 x 1024
-
-  병명 사전조사 : <a href="https://www.notion.so/wew1202/8204385788fd45c1adeb7c0c7dc5e4db">![Notion](https://img.shields.io/badge/Notion-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white)
+- 병명 사전조사 : <a href="https://www.notion.so/wew1202/8204385788fd45c1adeb7c0c7dc5e4db">![Notion](https://img.shields.io/badge/Notion-%23000000.svg?style=for-the-badge&logo=notion&logoColor=white)
   
 Methods
 
