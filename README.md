@@ -42,15 +42,15 @@
 * ### EDA
 ![https://user-images.githubusercontent.com/61971952/193209874-ebc78a59-5b58-4816-8412-c841a3b6099f.png](https://user-images.githubusercontent.com/61971952/193209874-ebc78a59-5b58-4816-8412-c841a3b6099f.png)
     
-  - 정상인의 데이터를 삭제하고 적은 양의 환자 데이터만 남음
-  - 라벨 간의 극단적인 양 차이 -> 데이터 불균형
-  - 단일 이미지안에 다중 라벨
-
+    - 정상인의 데이터를 삭제하고 적은 양의 환자 데이터만 남음
+    - 라벨 간의 극단적인 양 차이 -> 데이터 불균형
+    - 단일 이미지안에 다중 라벨
+    
 * ### Augmentation에 따른 dataset 종류
 
-  - category A: no augmentation (15000장)
-  - category B: rotation, flip, zoomin (15000장 + 6250장)
-  - categroy C: rotation, flip, zoomin(10%), CLAHE, equalization (15000장 + 6250장)
+    - category A: no augmentation (15000장)
+    - category B: rotation, flip, zoomin (15000장 + 6250장)
+    - categroy C: rotation, flip, zoomin(10%), CLAHE, equalization (15000장 + 6250장)
 
 
 * ### Model에 따른 성능 비교(kaggle score)
@@ -65,7 +65,18 @@ Yolox | 0.145/0.112 | 0.108/0.077 | --- | 0.141/0.118 | 0.127/0.137 | 0.179/0.15
 CenterNet | 0.038/0.039 | --- | --- | 0.069/0.065 | --- | 0.083/0.077 |
 
 * ### 앙상블 성능 비교(kaggle score)
- - 2-pred score
+  - 2-pred score
+    
+넘버 | WBF | Faster R-CNN | Yolov5 | RetinaNet | Yolof | Yolox | SCORE |
+--------------|-------|-------|-------|-------|-------|-------|-------|
+#1 | Faster,Retina | 1024A (0.131/0.110) | --- | 1024A (0.135/0.114) | --- | --- | 0.179/0.151 |
+#2 | Faster,yolov5 | 1024A (0.131/0.110) | 512A KFLOD (0.179/0.149) | --- | --- | --- | 0.210/0.196 |
+#3 | Retina,yolov5 | --- | 512A KFLOD (0.179/0.149) | 1024A (0.135/0.114) | --- | --- | 0.212/0.204 |
+#4 | Faster,yolov5,Retina | 1024A (0.131/0.110) | 512A KFLOD (0.179/0.149) | 1024A (0.135/0.114) | --- | --- | 0.216/0.209 |
+#5 | yolov5,yolovf | --- | 512A KFLOD (0.179/0.149) | --- | 1024A (0.142/0.106) | --- | 0.218/0.205 |
+#6 | Faster,yolov5,Retina,yolovf|0.038/0.039 | 1024A (0.131/0.110) | 512A KFLOD (0.179/0.149) | 1024A (0.135/0.114) | 1024A  (0.142/0.106) | --- | 0.229/0.206 |
+#7 | Faster,Retina,yolof,yolox| 1024A (0.131/0.110) | --- | 1024A (0.135/0.114),1024C(0.142/0.121) | 1024A (0.142/0.106),1024B(0.135/0.122) | 1024C(0.179/0.156) | 0.215/0.165 |
+#8 | Faster,Retina,yolof,yolox| 1024A (0.131/0.110) | --- | 1024A (0.135/0.114),1024C(0.142/0.121) | 1024A (0.142/0.106),1024B (0.135/0.122) | 1024A(0.141/0.118),1024C(0.179/0.156) | 0.222/0.170 |    
 
     
 * ### 예측 이미지
