@@ -5,7 +5,7 @@
 - Kaggle - VinBigData chest X-ray abnormalities detection contest : <a href="https://www.kaggle.com/competitions/vinbigdata-chest-xray-abnormalities-detection/overview">![kaggle](https://img.shields.io/badge/-kaggle-blue)  
     
 ---
-## 🫁Introduction
+## 🫁 Introduction
 * ### Why Chest X-ray?
 
   - Chest X-ray는 기본중에 기본인 검사.
@@ -19,8 +19,9 @@
 * ### purpose
   - 폐와 관련된 14가지의 질병을 detecting하여 data augmentation에 따른 여러 model의 performance 비교
 ---
-## 🫁Materials & Methods
+## 🫁 Materials & Methods
 * ### Materials
+  
   - Vietnam hospitals dataset (the Hospital 108 and the Hanoi Medical University Hospital)
   - train images: 15,000 (normal: 10,606, patient: 4,394)
   - test images: 3,000
@@ -30,44 +31,44 @@
   
 * ### Methods
   - Tools: OpenCV, PyTorch, numpy, pandas, sklearn, seaborn, matplotlib
-  - Augmentations: Rotation(90º), Flip(horizontal), Zoomin(10%), Cutmix, CLAHE, Equlization, Mosaic
-  - Models: 
-  - Workflow
+  - Augmentations: Rotation(random), Flip(horizontal), Zoomin(10%), Cutmix, CLAHE, Equlization
+  - Models: Faster RCNN, YOLOv5, RetinaNet, Yolof, Yolox, CenterNet
+  - Workflow : 
   
   
   
 ---
-## 🫁Results
-EDA
+## 🫁 Results
+* ### EDA
+![https://user-images.githubusercontent.com/61971952/193209874-ebc78a59-5b58-4816-8412-c841a3b6099f.png](https://user-images.githubusercontent.com/61971952/193209874-ebc78a59-5b58-4816-8412-c841a3b6099f.png)
+    
+  - 정상인의 데이터를 삭제하고 적은 양의 환자 데이터만 남음
+  - 라벨 간의 극단적인 양 차이 -> 데이터 불균형
+  - 단일 이미지안에 다중 라벨
 
-정상인의 데이터를 삭제하고 적은 양의 환자 데이터만 남음
-라벨 간의 극단적인 양 차이 -> 데이터 불균형
-단일 이미지안에 다중 라벨
+* ### Augmentation에 따른 dataset 종류
 
-Augmentation에 따른 dataset 종류
-
-category A: no augmentation (4,394장)
-category B: rotation, flip, zoomin (17,576장)
-categroy C: rotation, flip, zoomin, cutmix, CLAHE, equalization, mosaic (30,758장)
-category D: 데이터 불균형 해소를 위해 가장 적은 양의 라벨을 갖는 사진만 augmentation을 적용하고 나머지 라벨은 down sampling (5,999장)
-
-
-Category A	Category B	Category C	Category D
-원본	ROTATION	ROTATION	ROTATION
- 	FLIP	FLIP	FLIP
- 	ZOOM IN	ZOOM IN	ZOOM IN
- 		CUTMIX	CUTMIX
- 		CLAHE	CLAHE
- 		EQUALIZATION	EQUALIZATION
- 		MOSAIC	MOSAIC
-Model에 따른 성능 비교(kaggle score)
+  - category A: no augmentation (15000장)
+  - category B: rotation, flip, zoomin (15000장 + 6250장)
+  - categroy C: rotation, flip, zoomin(10%), CLAHE, equalization (15000장 + 6250장)
 
 
-Model	Category A	Category B	Category C	Category D
-EfficientDet	0.038	0.046	0.052	--
-Faster R-CNN	0.012	0.098	0.013	--
-YOLOX	0.021	0.068	0.147	0.070
-* 예측 이미지
+* ### Model에 따른 성능 비교(kaggle score)
+
+Model/데이터세트	| 512 A | 512 B | 512 C | 1024A | 1024B | 1024C |
+--------------|-------|-------|-------|-------|-------|-------|
+Faster R-CNN | 0.013/0.016 | 0.135/0.124 | --- | 0.131/0.110 | 0.137/0.127 | 0.123/0.154 |
+Yolov5 | 0.179/0.149 | 0.114/0.095  | 0.119/0.090 | 진행중 | 진행중 | 진행중 |
+RetinaNet | 0.041/0.043 | --- | --- | 0.135/0.114 | 0.126/0.132 | 0.142/0.121 |
+Yolof | 0.039/0.041 | --- | --- | 0.142/0.106 | 0.135/0.122 | 0.126/0.108 |
+Yolox | 0.145/0.112 | 0.108/0.077 | --- | 0.141/0.118 | 0.127/0.137 | 0.179/0.156 |
+CenterNet | 0.038/0.039 | --- | --- | 0.069/0.065 | --- | 0.083/0.077 |
+
+* ### 앙상블 성능 비교(kaggle score)
+ - 2-pred score
+
+    
+* ### 예측 이미지
 
 ---
 ## 🫁Discussion
