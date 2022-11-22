@@ -90,6 +90,7 @@ n | WBF | Faster R-CNN | Yolov5 | RetinaNet | Yolof | Yolox | SCORE |
     - 10epoch으로 학습시 k=1로만 본것과 k=5로 하여 성능을 비교한 결과 public score가 0.014에서 0.025로 향상됨을 확인할 수 있었다. 그러므로 데이터를 augmenation한 B와 C도 제대로 k = 5로 세팅해서 학습했다면 더 좋은 성능을 보였을 듯 하다.
 
 k|EPOCH|Score|EPOCH|Score
+--|-------|-------|-------|-------|
 1|10e|0.014|20e|0.016
 5|10e|0.025|20e|0.024
     
