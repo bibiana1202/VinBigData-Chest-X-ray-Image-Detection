@@ -8,7 +8,7 @@
 - Kaggle - VinBigData chest X-ray abnormalities detection contest : <a href="https://www.kaggle.com/competitions/vinbigdata-chest-xray-abnormalities-detection/overview">![kaggle](https://img.shields.io/badge/-kaggle-blue)  
     
 ---
-## 🫁 Introduction
+## ☺️ Introduction
 * ### Why Chest X-ray?
 
   - Chest X-ray는 기본중에 기본인 검사.
@@ -41,7 +41,7 @@
   
   
 ---
-## 🫁 Results
+## ☺️ Results
 * ### EDA
 ![https://user-images.githubusercontent.com/61971952/193209874-ebc78a59-5b58-4816-8412-c841a3b6099f.png](https://user-images.githubusercontent.com/61971952/193209874-ebc78a59-5b58-4816-8412-c841a3b6099f.png)
     
@@ -85,17 +85,12 @@ n | WBF | Faster R-CNN | Yolov5 | RetinaNet | Yolof | Yolox | SCORE |
 * ### 예측 이미지
 
 ---
-## 🫁Discussion
+## ☺️ Discussion
  - Medical trend인 object detection 을 공부하기 위하여 선택한 프로젝트    
--  ### Zoom in augmentation시 10%로 한 이유?
-    - 10%보다 더 zoom in을 했을경우 이미지의 가장자리에 위치하던 병변들이 잘리는 경우들이 있어서 이를 막기위해 10%정도만 zoom in을 하였다. normalization 후 다시 size(512x512) 재정의시 정수화함에따라 같은 값을 갖게되는 경우가 있었다.
-
-    - 병변이 너무도 작아 bbox의 y_max와 y_min이 별 차이가 나지 않았기 때문. 이런 데이터로인해 학습시 오류가 발생하여 해당 데이터(10개 미만)는 삭제하기로 함.
 
 * ### Model selection
-
     - 1 stage model
-        - YOLOX: 1 stage에서 유명하고 속도가 빠르기때문에 사용함.
+        - YOLOv5, YoloX, YoloX: 1 stage에서 유명하고 속도가 빠르기때문에 사용함.
         - EfficientDet (one-stage detector paradigm 기반으로 구성됨): 사람들이 주로 사용하는 YOLO v5보다 average precision이 좋기때문에 선택.
     - 2 stage model
         -  Faster R-CNN: 이전 수업에서 사용했던 model이 1 stage라서 2 stage 공부 겸 여전히 현역으로 쓰이고 있는 기초적인 모델이라서 선택하였음.
@@ -107,9 +102,8 @@ n | WBF | Faster R-CNN | Yolov5 | RetinaNet | Yolof | Yolox | SCORE |
     - Augmentation에 따른 성능 평가를 비교해 보기위해 augmentation을 안한 A그룹과 기본적인 augmentation을 한 B그룹, 마지막으로 기본적인 augmentation외 여러 다양한 기법까지 적용한 C그룹으로 나누었다.
 그 결과 3개의 model 모두 augmentation을 하면 할수록 성능이 향상됨을 확인하였다.
     - Data내에서 모든 label이 비슷한 양으로 존재하지않고 특정 label위주로 존재하고있다. 즉, data imbalance가 심한상황.
-    - Data imbalance 문제를 해결하기 위해 너무 많은 양을 갖고있는 특정 label(0,3,11,13)은 down sampling하고 적은 양을 갖는 label(1,12)엔 여러가지 augmentation으로 up sampling하는 작업을 하였다.
-    - 1,12에는 Rotation, Flip, Zoomin, Cutmix, CLAHE, Equalization 을 적용하고
-    - 0,3,11,13은 약 3,000개로 down sampling하여 label간의 극단적인 차이가 어느정도 해소된 D그룹을 만들었다. 가장 성능이 좋았고 학습속도가 빠른 YOLOX로 D그룹을 학습한 결과 A그룹에 비해 성능이 향상됨 을 확인할 수 있었고 양이 적은데도 불구하고 기본 3가지 augmentation을 한 B그룹보다 성능이 좋았다.
+    - Data imbalance 문제를 해결하기 위해 적은 양을 갖는 label(0,3,9,10,11,13)엔 여러가지 augmentation으로 up sampling하는 작업을 하였다.
+    - YoloX로 C그룹을 학습한 결과 A그룹에 비해 성능이 향상됨 을 확인
     - 하지만 기본 augmentation외에 추가적인 augmentation을 했던 C그룹보다는 성능이 덜 나왔다. (이는 data의 양이 6배나 차이가 나기때문에 나온 결과)
     - C그룹에서 훨씬 성능이 좋았던것을 통해 data imbalance를 해결한것보다는 data의 양이 충분히 있는것이 성능향상에 더 많은 효과가 있음을 유추할 수 있었고
     - imbalance와 data의 양을 동시에 해결한다면 이보다 훨씬 더 좋은 성능을 낼 수 있지 않을까 싶다.
