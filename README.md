@@ -60,12 +60,12 @@
 
 M/D	| 512 A | 512 B | 512 C | 1024A | 1024B | 1024C |
 --------------|-------|-------|-------|-------|-------|-------|
-Faster R-CNN | 0.013/0.016 | 0.135/0.124 | --- | 0.131/0.110 | 0.137/0.127 | 0.123/0.154 |
-Yolov5 | 0.179/0.149 | 0.114/0.095  | 0.119/0.090 | 진행중 | 진행중 | 진행중 |
-RetinaNet | 0.041/0.043 | --- | --- | 0.135/0.114 | 0.126/0.132 | 0.142/0.121 |
-Yolof | 0.039/0.041 | --- | --- | 0.142/0.106 | 0.135/0.122 | 0.126/0.108 |
-Yolox | 0.145/0.112 | 0.108/0.077 | --- | 0.141/0.118 | 0.127/0.137 | 0.179/0.156 |
-CenterNet | 0.038/0.039 | --- | --- | 0.069/0.065 | --- | 0.083/0.077 |
+Faster R-CNN | 0.129 | 0.135 | --- | 0.131 | 0.137 | 0.123 |
+Yolov5 | 0.179 | 0.114 | 0.119 | 0.165 | 0.123 | 0.134 |
+RetinaNet | 0.041 | --- | --- | 0.135 | 0.126 | 0.142 |
+Yolof | 0.039 | --- | --- | 0.142 | 0.135 | 0.126 |
+Yolox | 0.145 | 0.108 | --- | 0.141 | 0.127 | 0.179 |
+CenterNet | 0.038 | --- | --- | 0.069 | --- | 0.083 |
 
 * ### 앙상블 성능 비교(kaggle score)
   - 2-pred score
@@ -101,17 +101,15 @@ n | WBF | Faster R-CNN | Yolov5 | RetinaNet | Yolof | Yolox | SCORE |
     - 질병을 학습해야하는 model이기때문에 환자의 data만 갖고 학습을 시켜야하는데 data의 양이 너무 적어 양을 늘리기 위하여 여러 augmentation을 적용해보았다.
     - Augmentation에 따른 성능 평가를 비교해 보기위해 augmentation을 안한 A그룹과 기본적인 augmentation을 한 B그룹, 마지막으로 기본적인 augmentation외 여러 다양한 기법까지 적용한 C그룹으로 나누었다.
 그 결과 3개의 model 모두 augmentation을 하면 할수록 성능이 향상됨을 확인하였다.
-    - Data내에서 모든 label이 비슷한 양으로 존재하지않고 특정 label위주로 존재하고있다. 즉, data imbalance가 심한상황.
+    - Data내에서 모든 label이 비슷한 양으로 존재하지않고 특정 label 위주로 존재하고있다. 즉, data imbalance가 심한상황.
     - Data imbalance 문제를 해결하기 위해 적은 양을 갖는 label(0,3,9,10,11,13)엔 여러가지 augmentation으로 up sampling하는 작업을 하였다.
-    - YoloX로 C그룹을 학습한 결과 A그룹에 비해 성능이 향상됨 을 확인
-    - 하지만 기본 augmentation외에 추가적인 augmentation을 했던 C그룹보다는 성능이 덜 나왔다. (이는 data의 양이 6배나 차이가 나기때문에 나온 결과)
-    - C그룹에서 훨씬 성능이 좋았던것을 통해 data imbalance를 해결한것보다는 data의 양이 충분히 있는것이 성능향상에 더 많은 효과가 있음을 유추할 수 있었고
+    - 하지만 기본 augmentation외에 이미지 크기가 1024 인 경우가 성능이 대체로 더 잘 나왔다.
     - imbalance와 data의 양을 동시에 해결한다면 이보다 훨씬 더 좋은 성능을 낼 수 있지 않을까 싶다.
 
 ---
 ## Ref
-https://www.kaggle.com/code/dschettler8845/visual-in-depth-eda-vinbigdata-competition-data
-https://www.kaggle.com/code/yerramvarun/pytorch-fasterrcnn-with-group-kfold-14-class
-https://www.kaggle.com/code/pestipeti/vinbigdata-fasterrcnn-pytorch-inference/notebook
-https://www.kaggle.com/code/pestipeti/vinbigdata-fasterrcnn-pytorch-train/notebook
+- https://www.kaggle.com/code/dschettler8845/visual-in-depth-eda-vinbigdata-competition-data
+- https://www.kaggle.com/code/yerramvarun/pytorch-fasterrcnn-with-group-kfold-14-class
+- https://www.kaggle.com/code/pestipeti/vinbigdata-fasterrcnn-pytorch-inference/notebook
+- https://www.kaggle.com/code/pestipeti/vinbigdata-fasterrcnn-pytorch-train/notebook
 
